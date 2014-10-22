@@ -18,7 +18,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 -- addon information
 
 _addon.name = 'synthall'
-_addon.version = '1.0.0'
+_addon.version = '1.0.1'
 _addon.command = 'synthall'
 _addon.author = 'Seth VanHeulen (Acacia@Odin)'
 
@@ -41,17 +41,17 @@ end
 -- event callback functions
 
 function check_lose_buff(buff_id)
-    if support and buff_id >= 236 and buff_id <= 243 then
+    if enabled and support and buff_id >= 236 and buff_id <= 243 then
         enabled = false
         show_status()
-    elseif food and buff_id == 251 then
+    elseif enabled and food and buff_id == 251 then
         enabled = false
         show_status()
     end
 end
 
 function check_incoming_text(original, modified, original_mode, modified_mode)
-    if original:find('Synthesis canceled.') == 1 then
+    if enabled and original:find('Synthesis canceled.') == 1 then
         enabled = false
         show_status()
     end
